@@ -17,11 +17,15 @@ class WaveManager
     (3).times =>
       do @deployEnemy
 
-  # Random positions to deploy enemies [[random height], [random width]]
   deployPosition: ->
-    randomHeight = [@bounds.width + 100, (@bounds.height / 2) + ([1, -1, 1].sample() * Number.random(@bounds.height / 2))]
-    randomWidth = [(@bounds.width / 2) + ([1, -1, 1].sample() * Number.random(@bounds.width / 2)), @bounds.height + 100]
-    positions = [randomHeight, randomWidth, randomHeight]
+    radomHeight = (@bounds.height / 2) + ([1, -1, 1].sample() * Number.random(@bounds.height / 2))
+    radomWidth = (@bounds.width / 2) + ([1, -1, 1].sample() * Number.random(@bounds.width / 2))
+
+    right = [@bounds.width + 100, radomHeight]
+    bottom = [radomWidth, @bounds.height + 100]
+    left = [-100, radomHeight]
+
+    positions = [right, bottom, left, right]
     position = positions.sample()
     return new Vector position.first(), position.last()
 
