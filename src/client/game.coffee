@@ -7,6 +7,7 @@ class Game
     mouse    = new Mouse @canvas
     keyboard = new Keyboard
     @player = new Bee new Vector(50, 50), keyboard, mouse
+    @enemy = new Enemy new Vector((@canvas.width + 100), (@canvas.height / 2)), 5
 
     # Attaching events
     $(window).on "resize", @resize
@@ -20,6 +21,7 @@ class Game
 
   update: ->
     @player.update this
+    @enemy.update this
 
     for bullet, index in @player.bullets when bullet?
       position = bullet.position
@@ -29,6 +31,7 @@ class Game
   draw: ->
     do @clearScreen
     @player.draw @context
+    @enemy.draw @context
 
   clearScreen: ->
     @context.fillStyle = "#000"
