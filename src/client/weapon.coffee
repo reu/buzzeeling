@@ -3,12 +3,16 @@ class Weapon
     @time = 0
     @canFire = true
     @rateOfFire = 10
+    @ammo = 5
 
   update: ->
     @time += 1
     @canFire = @time % @rateOfFire == 0 or @time == 0
 
   draw: (context) ->
+
+  reload: ->
+    @ammo = 5
 
 class Pistol extends Weapon
   shot: ->
