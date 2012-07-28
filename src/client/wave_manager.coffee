@@ -64,8 +64,11 @@ class WaveManager
         do @nextWave
 
   deployEnemy: =>
-    enemy = @availableEnemies.pop()
-    @deployedEnemies.push enemy if enemy?
+    if @availableEnemies.length > 0
+      index = Number.random @availableEnemies.length - 1
+      enemy = @availableEnemies[index]
+      @availableEnemies.remove enemy
+      @deployedEnemies.push enemy if enemy?
 
   enemies: ->
     @deployedEnemies
