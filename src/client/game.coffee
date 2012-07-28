@@ -4,6 +4,7 @@ class Game
     @canvasDebug  = $("<canvas width='#{width}' height='#{height}' style='position:absolute'></canvas>").appendTo(container)[0]
     @context = @canvas.getContext("2d")
     @contextDebug = @canvasDebug.getContext("2d")
+    @contextDebug.fillStyle = '#FFF'
 
     # Preparing main player
     mouse    = new Mouse document
@@ -41,7 +42,6 @@ class Game
           enemyResultVector = Vector.sub enemy.lastPosition, enemy.position
           enemyWidth = enemyResultVector.mag()
 
-          @contextDebug.fillStyle = '#FFF'
           if @intersects enemy.lastPosition.x, enemy.lastPosition.y, enemyWidth, 5, bullet.lastPosition.x, bullet.lastPosition.y, bulletWidth, 10
             delete @player.bullets.splice(index, 1)
             delete @enemies.splice(enemyIndex, 1)
