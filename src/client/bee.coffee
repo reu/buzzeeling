@@ -12,13 +12,10 @@ class Bee extends Flier
     @angle = 0
     @bullets = []
     @weapon = new Pistol(this)
-<<<<<<< Updated upstream
     @animation = new Animation("abelha", 4)
-=======
     @speed = 20
 
   applyDirection: (force) -> @position.add force.mult(@speed)
->>>>>>> Stashed changes
 
   draw: (context) ->
     context.save()
