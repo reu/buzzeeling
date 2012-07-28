@@ -1,7 +1,8 @@
 class WaveManager
   WAVES = [
-    [ { amount: 10, enemy: Wespa } ],
-    [ { amount: 15, enemy: Flyghter }, { amount: 10, enemy: Wespa } ],
+    [ { amount: 10, enemy: Flyghter } ]
+    [ { amount: 15, enemy: Flyghter }, { amount: 10, enemy: Beetlebeer } ]
+    [ { amount: 5, enemy: Flyghter }, { amount: 5, enemy: Wespa }, { amount: 10, enemy: Beetlebeer } ]
     [ { amount: 5, enemy: Flyghter }, { amount: 10, enemy: Wespa }, { amount: 10, enemy: Beetlebeer } ]
   ]
 
