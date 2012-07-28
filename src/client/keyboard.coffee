@@ -14,6 +14,7 @@ class Keyboard
     D:      68
     W:      87
     S:      83
+    R:      82
 
     NUMBER1:      49
     NUMBER2:      50

@@ -3,10 +3,42 @@ class Weapon
     @time = 0
     @canFire = true
     @rateOfFire = 10
+    @timeToReload = 40
+    @reloadTimer = 0
+    @isReloading = false
+    @clipSize = 5
+    @ammo = @clipSize
+
+  shot: ->
+    if @canFire
+      do @performShot
+
+  performShot: ->
+    @ammo -= 1
+
+  reloadStarted: ->
+  reloadFinished: ->
+  reload: ->
+    return if @isReloading
+
+    if !@isReloading and @ammo != @clipSize
+      @isReloading = true
+      do @reloadStarted
+
+  reloadingLoop: ->
+    if @isReloading
+      if @reloadTimer >= @timeToReload
+        @isReloading = false
+        @reloadTimer = 0
+        @ammo = @clipSize
+        do @reloadFinished
+      else
+        @reloadTimer += 1
 
   update: ->
+    do @reloadingLoop if @isReloading
     @time += 1
-    @canFire = @time % @rateOfFire == 0 or @time == 0
+    @canFire = (@time % @rateOfFire == 0 or @time == 0) and !@isReloading and @ammo > 0
 
   draw: (context) ->
 

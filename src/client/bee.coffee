@@ -6,6 +6,7 @@ class Bee extends Flier
     WALK_LEFT:    Keyboard.KEYS.A
     WALK_DOWN:    Keyboard.KEYS.S
     WALK_RIGHT:   Keyboard.KEYS.D
+    RELOAD:       Keyboard.KEYS.R
     USE_PISTOL:   Keyboard.KEYS.NUMBER1
     USE_DPISTOLS: Keyboard.KEYS.NUMBER2
     USE_SHOTGUN:  Keyboard.KEYS.NUMBER3
@@ -57,7 +58,9 @@ class Bee extends Flier
     @acceleration = new Vector
 
     do @weapon.update
-    do @weapon.shot if @mouse.isPressed and @weapon.canFire
+    do @weapon.shot if @mouse.isPressed
+    do @weapon.reload if @keyboard.isKeyPressed Bee.COMMANDS.RELOAD
+
 
     do bullet.update for bullet in @bullets
     do @score.update

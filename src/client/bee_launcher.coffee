@@ -1,23 +1,30 @@
 class BeeLauncher extends Weapon
   constructor: (@player) ->
     super @player
+    @clipSize = 10
     @army = []
-    for index in [1..25]
+    for index in [1..@clipSize]
       @army.push @generateBee()
+    @ammo = @army.length
 
-  shot: ->
+  performShot: ->
+    super
     miniBee = do @consumeBee
     angle = Math.atan2(@player.mouse.position.y - miniBee.position.y, @player.mouse.position.x - miniBee.position.x)
     bullet = new BeeBullet miniBee.position.clone(), angle, 20
     @player.addBullet bullet
 
+  reloadStarted: ->
+    beesToBeAdded = @clipSize - @ammo
+    beesToBeAdded.times =>
+      @army.push @generateBee()
+
   generateBee: ->
-    position = new Vector 1024 / 2, 768 / 2
+    position = new Vector 1024 / 2 + Number.random(10), 768 / 2 + Number.random(10)
     new MiniBee(position)
 
   consumeBee: ->
     bee = @army.shift()
-    @army.push @generateBee()
     bee
 
   update: ->
