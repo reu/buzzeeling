@@ -53,6 +53,7 @@ class Bullet
     @velocity.mult speed
     @radius = 3
     @lastPosition = @position
+    @radius = 4
 
   update: ->
     @lastPosition = @position.clone()

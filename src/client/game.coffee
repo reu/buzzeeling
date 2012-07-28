@@ -42,17 +42,12 @@ class Game
         delete @player.bullets.splice(index, 1)
       else
         for enemy, enemyIndex in @enemies when enemy?
-          bulletResultVector = Vector.sub bullet.lastPosition, position
-          bulletWidth = bulletResultVector.mag()
+          delta = Vector.sub position, enemy.position
+          distance = delta.magSq()
 
-          enemyResultVector = Vector.sub enemy.lastPosition, enemy.position
-          enemyWidth = enemyResultVector.mag()
+          radii = bullet.radius + enemy.radius
 
-          if @intersects enemy.lastPosition.x, enemy.lastPosition.y, enemyWidth, 5, bullet.lastPosition.x, bullet.lastPosition.y, bulletWidth, 10
-            delete @player.bullets.splice(index, 1)
-            delete @enemies.splice(enemyIndex, 1)
-
-          if @intersects enemy.position.x, enemy.position.y, enemyWidth, 5, bullet.position.x, bullet.position.y, bulletWidth, 10
+          if distance <= radii * radii
             delete @enemies.splice(enemyIndex, 1)
             delete @player.bullets.splice(index, 1)
 
@@ -60,20 +55,13 @@ class Game
       for i in [1..5]
         @enemies.push new Enemy new Vector((@canvas.width + 100), (@canvas.height / 2) + i * 30)
 
-  intersects: (x1, y1, w1, h1, x2, y2, w2, h2) ->
-    w2 += x2
-    w1 += x1
-    return false if x2 > w1 or x1 > w2
-    h2 += y2
-    h1 += y1
-    return false if y2 > h1 or y1 > h2
-    true
-
   draw: ->
     do @clearScreen
     @player.draw @context
+
     for enemy in @enemies when enemy?
       enemy.draw @context
+
     @score.draw @context
 
   clearScreen: ->

@@ -3,6 +3,7 @@ class Flier
     @velocity     = new Vector
     @acceleration = new Vector
     @force = 1
+    @radius = 10
 
   applyDirection: (direction) -> @acceleration.add direction.mult(@force)
 
