@@ -14,7 +14,7 @@ class Bee extends Flier
     super @position, @speed = 20
     @angle = 0
     @bullets = []
-    @weapon = new Pistol(this)
+    @weapon = new BeeLauncher(this)
     @animation = new Animation("abelha", 4)
 
   draw: (context) ->
@@ -23,6 +23,7 @@ class Bee extends Flier
     @animation.draw(context)
     context.restore()
 
+    @weapon.draw context
     bullet.draw context for bullet in @bullets
 
   update: (game) ->

@@ -8,6 +8,8 @@ class Weapon
     @time += 1
     @canFire = @time % @rateOfFire == 0 or @time == 0
 
+  draw: (context) ->
+
 class Pistol extends Weapon
   shot: ->
     bullet = new Bullet @player.position.clone(), @player.angle, 30
@@ -63,6 +65,8 @@ class Bullet
     context.fillCircle @position.x, @position.y, @radius
     context.closePath()
 
+window.Bullet = Bullet
+window.Weapon = Weapon
 window.Pistol = Pistol
 window.DoublePistol = DoublePistol
 window.Shotgun = Shotgun

@@ -88,4 +88,11 @@ class Vector
   toString: ->
     "(#{[@x, @y, @z].join(", ")})"
 
+  @dist: (v1, v2) ->
+    dx = v1.x - v2.x
+    dy = v1.y - v2.y
+    dz = v1.z - v2.z
+
+    Math.sqrt dx * dx + dy * dy + dz * dz
+
 window.Vector = Vector
