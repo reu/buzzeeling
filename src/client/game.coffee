@@ -1,5 +1,5 @@
 class Game
-  constructor: (container = $("#game"), width = window.innerWidth, height = window.innerHeight) ->
+  constructor: (container = $("#game"), width = 1024, height = 768) ->
     @canvas  = $("<canvas width='#{width}' height='#{height}' style='position:absolute'></canvas>").appendTo(container)[0]
     @canvasDebug  = $("<canvas width='#{width}' height='#{height}' style='position:absolute'></canvas>").appendTo(container)[0]
     @context = @canvas.getContext("2d")
@@ -77,8 +77,7 @@ class Game
     @score.draw @context
 
   clearScreen: ->
-    @context.fillStyle = "#000"
-    @context.fillRect 0, 0, @canvas.width, @canvas.height
+    @context.clearRect 0, 0, @canvas.width, @canvas.height
 
   resize: =>
     @canvas.width  = window.innerWidth
