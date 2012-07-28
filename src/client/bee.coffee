@@ -1,4 +1,6 @@
 class Bee extends Flier
+  FRICTION = 0.93
+
   @COMMANDS:
     WALK_UP:      Keyboard.KEYS.W
     WALK_LEFT:    Keyboard.KEYS.A
@@ -9,13 +11,11 @@ class Bee extends Flier
     USE_SHOTGUN:  Keyboard.KEYS.NUMBER3
 
   constructor: (@position, @keyboard, @mouse) ->
+    super @position, @speed = 20
     @angle = 0
     @bullets = []
     @weapon = new Pistol(this)
     @animation = new Animation("abelha", 4)
-    @speed = 20
-
-  applyDirection: (force) -> @position.add force.mult(@speed)
 
   draw: (context) ->
     context.save()
@@ -43,6 +43,12 @@ class Bee extends Flier
     @weapon = new Pistol(this)       if @keyboard.isKeyPressed Bee.COMMANDS.USE_PISTOL
     @weapon = new DoublePistol(this) if @keyboard.isKeyPressed Bee.COMMANDS.USE_DPISTOLS
     @weapon = new Shotgun(this)      if @keyboard.isKeyPressed Bee.COMMANDS.USE_SHOTGUN
+
+    @velocity.add @acceleration
+    @velocity.mult FRICTION
+    @velocity.limit @speed
+    @position.add @velocity
+    @acceleration = new Vector
 
     do @weapon.update
     do @weapon.shot if @mouse.isPressed and @weapon.canFire
