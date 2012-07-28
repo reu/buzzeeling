@@ -3,8 +3,6 @@ class Enemy extends Flier
   constructor: (@position, @speed = 5) ->
     super @position, @speed
 
-  applyDirection: (force) -> @position.add force.mult(@speed)
-
   draw: (context) ->
     context.save()
     context.strokeStyle = context.fillStyle = "#fff"
