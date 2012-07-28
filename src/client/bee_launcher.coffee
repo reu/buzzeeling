@@ -46,7 +46,7 @@ class MiniBee extends Module
   constructor: (@position) ->
     @acceleration = new Vector 0, 0
     @velocity     = new Vector 0, 0
-    @animation = new Animation("minibee", 8, 30)
+    @animation = new Animation("minibee", 8)
     @radius   = 5
     @maxspeed = 15
     @maxforce = 0.9
@@ -72,7 +72,7 @@ class MiniBee extends Module
 class BeeBullet extends Bullet
   constructor: ->
     super
-    @animation = new Animation("minibee_attacking", 1, 30)
+    @animation = new Animation("minibee_attacking", 1)
   draw: (context) =>
     do context.save
     context.translate(@position.x, @position.y)

@@ -4,6 +4,6 @@ class Wespa extends Enemy
     @speed = 10
     @hp = 3
     super @position, @speed, @hp
-    @animation = new Animation("wespa", 8, 60)
+    @animation = new Animation("wespa", 8)
 
 window.Wespa = Wespa

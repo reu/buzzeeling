@@ -8,7 +8,7 @@ class Animation
       image
 
   draw: (context) ->
-    context.drawImage @frames[@currentFrame - 1], 0, 0, @scale, @scale
+    context.drawImage @frames[@currentFrame - 1], 0, 0
 
     if @currentFrame >= @count
       @currentFrame = 1
