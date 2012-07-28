@@ -35,10 +35,17 @@ class Player
   update: (game) ->
     @angle = Math.atan2(@mouse.position.y - @position.y, @mouse.position.x - @position.x)
 
-    @applyDirection new Vector -1, 0 if @keyboard.isKeyPressed Player.COMMANDS.WALK_LEFT
-    @applyDirection new Vector 1,  0 if @keyboard.isKeyPressed Player.COMMANDS.WALK_RIGHT
-    @applyDirection new Vector 0, -1 if @keyboard.isKeyPressed Player.COMMANDS.WALK_UP
-    @applyDirection new Vector 0,  1 if @keyboard.isKeyPressed Player.COMMANDS.WALK_DOWN
+    if @position.x > 15 and @keyboard.isKeyPressed Player.COMMANDS.WALK_LEFT
+      @applyDirection new Vector -1, 0
+
+    if @position.x < game.canvas.width - 30 and @keyboard.isKeyPressed Player.COMMANDS.WALK_RIGHT
+      @applyDirection new Vector 1,  0
+
+    if @position.y > 15 and @keyboard.isKeyPressed Player.COMMANDS.WALK_UP
+      @applyDirection new Vector 0, -1
+
+    if @position.y < game.canvas.height - 30 and @keyboard.isKeyPressed Player.COMMANDS.WALK_DOWN
+      @applyDirection new Vector 0,  1
 
     @weapon = new Pistol(this)       if @keyboard.isKeyPressed Player.COMMANDS.USE_PISTOL
     @weapon = new DoublePistol(this) if @keyboard.isKeyPressed Player.COMMANDS.USE_DPISTOLS
