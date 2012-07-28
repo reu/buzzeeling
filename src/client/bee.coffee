@@ -15,18 +15,12 @@ class Bee extends Flier
     @angle = 0
     @bullets = []
     @weapon = new Pistol(this)
+    @animation = new Animation("abelha", 4)
 
   draw: (context) ->
     context.save()
-    context.strokeStyle = context.fillStyle = "#fff"
-    context.beginPath()
     context.translate(@position.x, @position.y)
-    context.rotate @angle
-    context.moveTo -8, -8
-    context.lineTo 12, 0
-    context.lineTo -8, 8
-    context.closePath()
-    context.stroke()
+    @animation.draw(context)
     context.restore()
 
     bullet.draw context for bullet in @bullets
