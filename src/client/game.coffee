@@ -6,7 +6,7 @@ class Game
     # Preparing main player
     mouse    = new Mouse @canvas
     keyboard = new Keyboard
-    @player = new Player keyboard, mouse
+    @player = new Bee new Vector(50, 50), keyboard, mouse
 
     # Attaching events
     $(window).on "resize", @resize
