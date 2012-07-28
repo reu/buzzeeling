@@ -1,5 +1,3 @@
-random = (min, max) -> Math.random() * (max - min) + min
-
 class BeeLauncher extends Weapon
   constructor: (@player) ->
     super @player
@@ -34,7 +32,10 @@ class BeeLauncher extends Weapon
     for bee in @army
       bee.draw context
 
-class MiniBee
+class MiniBee extends Module
+  @include Separable
+  @include Seekable
+
   constructor: (@position) ->
     @acceleration = new Vector 0, 0
     @velocity     = new Vector 0, 0
@@ -48,52 +49,6 @@ class MiniBee
   spread:      => if @approximation > 8 then @approximation = 8 else @approximation += 0.2
 
   applyForce: (force) -> @acceleration.add force
-
-  applySeparation: (bees) ->
-    force = @separate bees
-    force.mult(2)
-    @applyForce force
-
-  applySeek: (target) ->
-    force = @seek target
-    @applyForce force
-
-  seek: (target) ->
-    desired = Vector.sub target, @position
-
-    desired.normalize()
-    desired.mult(@maxspeed)
-
-    steering = Vector.sub desired, @velocity
-    steering.limit(@maxforce)
-
-    steering
-
-  separate: (bees) ->
-    desired = @radius * @approximation
-    force = new Vector 0, 0
-
-    count = 0
-
-    for bee in bees when bee != this
-      distance = Vector.dist @position, bee.position
-
-      if distance > 0 and distance < desired
-        diff = Vector.sub @position, bee.position
-        do diff.normalize
-        diff.div distance
-        force.add diff
-
-        count += 1
-
-    if count > 0
-      force.div count
-      do force.normalize
-      force.mult @maxspeed
-      force.sub @velocity
-      force.limit @maxforce
-
-    return force
 
   update: ->
     @velocity.add @acceleration
