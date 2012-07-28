@@ -38,6 +38,7 @@ class Game
 
     for bullet, index in @player.bullets when bullet?
       position = bullet.position
+
       if position.x > @canvas.width or position.x < 0 or position.y > @canvas.height or position.y < 0
         delete @player.bullets.splice(index, 1)
       else
@@ -48,8 +49,8 @@ class Game
           radii = bullet.radius + enemy.radius
 
           if distance <= radii * radii
-            delete @enemies.splice(enemyIndex, 1)
-            delete @player.bullets.splice(index, 1)
+            delete @enemies.remove(enemy)
+            delete @player.bullets.remove(bullet)
 
     if @enemies.length == 0
       for i in [1..5]
