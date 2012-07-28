@@ -19,6 +19,15 @@ class Bee extends Flier
     @animation = new Animation("giuffrida", 8)
     @radius = 28
 
+  checkLimits: (area) ->
+    if @position.x + @radius > area.width or @position.x < 0
+      @velocity.x *= -1
+      @velocity.x *= FRICTION
+
+    if @position.y + @radius * 5 > area.height or @position.y < 0
+      @velocity.y *= -1
+      @velocity.x *= FRICTION
+
   draw: (context) ->
     context.save()
     context.translate(@position.x, @position.y)

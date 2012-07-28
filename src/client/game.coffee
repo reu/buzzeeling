@@ -28,6 +28,7 @@ class Game
 
   update: ->
     @player.update this
+    @player.checkLimits @canvas
     @waveManager.update this
 
     for bullet, index in @player.bullets when bullet?
