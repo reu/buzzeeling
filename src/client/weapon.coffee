@@ -12,6 +12,8 @@ class Weapon
   shot: ->
     if @canFire
       do @performShot
+    else if @ammo == 0
+      do @reload
 
   performShot: ->
     @ammo -= 1
