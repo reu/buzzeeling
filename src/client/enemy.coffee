@@ -1,7 +1,7 @@
 class Enemy extends Flier
 
-  constructor: (@position,speed) ->
-    @speed = speed
+  constructor: (@position, @speed = 5) ->
+    super @position, @speed
 
   applyDirection: (force) -> @position.add force.mult(@speed)
 

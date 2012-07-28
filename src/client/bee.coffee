@@ -9,10 +9,10 @@ class Bee extends Flier
     USE_SHOTGUN:  Keyboard.KEYS.NUMBER3
 
   constructor: (@position, @keyboard, @mouse) ->
+    super @position, @speed = 20
     @angle = 0
     @bullets = []
     @weapon = new Pistol(this)
-    @speed = 20
 
   applyDirection: (force) -> @position.add force.mult(@speed)
 

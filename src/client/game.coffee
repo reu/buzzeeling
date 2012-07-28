@@ -7,7 +7,7 @@ class Game
     mouse    = new Mouse @canvas
     keyboard = new Keyboard
     @player = new Bee new Vector(50, 50), keyboard, mouse
-    @enemy = new Enemy new Vector((@canvas.width + 100), (@canvas.height / 2)), 5
+    @enemy = new Enemy new Vector((@canvas.width + 100), (@canvas.height / 2))
 
     # Attaching events
     $(window).on "resize", @resize
