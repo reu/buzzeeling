@@ -5,6 +5,9 @@ class Game
     @context = @canvas.getContext("2d")
     @contextDebug = @canvasDebug.getContext("2d")
     @contextDebug.fillStyle = '#FFF'
+    @snd = new Audio "sounds/abelha-bg.ogg"
+    @snd.loop = true
+    #@snd.play()
 
     # Preparing main player
     mouse    = new Mouse document
@@ -14,6 +17,7 @@ class Game
     @enemies = []
     for i in [1..5]
       @enemies.push new Enemy new Vector((@canvas.width + 100), (@canvas.height / 2) + i * 30)
+    @score = new Score "Player"
 
     # Attaching events
     $(window).on "resize", @resize
@@ -29,6 +33,8 @@ class Game
     @player.update this
     for enemy in @enemies when enemy?
       enemy.update this
+
+    @score.update @context
 
     for bullet, index in @player.bullets when bullet?
       position = bullet.position
@@ -68,6 +74,7 @@ class Game
     @player.draw @context
     for enemy in @enemies when enemy?
       enemy.draw @context
+    @score.draw @context
 
   clearScreen: ->
     @context.fillStyle = "#000"
