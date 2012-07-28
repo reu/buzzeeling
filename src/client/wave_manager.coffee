@@ -82,7 +82,8 @@ class WaveManager
 
   nextWave: ->
     @wave +=1
-    @deployEvery = @noobDeployEveryFrame / (@wave * 0.5)
+    @deployEvery = Math.round @noobDeployEveryFrame / (@wave * 0.5)
+    @deployEvery = 50 if @deployEvery < 50
     do @buildEnemies
 
 
