@@ -10,7 +10,7 @@ class Game
     #@snd.play()
 
     # Preparing main player
-    mouse    = new Mouse document
+    mouse    = new Mouse container
     keyboard = new Keyboard
     @player = new Bee new Vector(50, 50), keyboard, mouse, new Score("Giuffrida")
 
@@ -51,6 +51,13 @@ class Game
     do @clearScreen
     @player.draw @context
     @waveManager.draw @context
+
+    @context.save()
+    @context.beginPath()
+    @context.fillStyle = "#000"
+    @context.fillCircle(@player.mouse.position.x, @player.mouse.position.y, 10)
+    @context.closePath()
+    @context.restore()
 
   clearScreen: ->
     @context.clearRect 0, 0, @canvas.width, @canvas.height

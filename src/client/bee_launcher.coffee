@@ -7,8 +7,8 @@ class BeeLauncher extends Weapon
 
   shot: ->
     miniBee = do @consumeBee
-    # TODO: nao é o player.angle, teriamos que calcular o angulo aqui
-    bullet = new BeeBullet miniBee.position.clone(), @player.angle, 20
+    angle = Math.atan2(@player.mouse.position.y - miniBee.position.y, @player.mouse.position.x - miniBee.position.x)
+    bullet = new BeeBullet miniBee.position.clone(), angle, 20
     @player.addBullet bullet
 
   generateBee: ->

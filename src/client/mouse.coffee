@@ -9,6 +9,6 @@ class Mouse
     $(container).on "mouseup",   => @isPressed = false
 
   updatePosition: (event) =>
-    [@position.x, @position.y] = [event.clientX, event.clientY]
+    [@position.x, @position.y] = [event.offsetX, event.offsetY]
 
 window.Mouse = Mouse
