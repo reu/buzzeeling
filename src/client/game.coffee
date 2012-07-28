@@ -1,10 +1,12 @@
 class Game
   constructor: (container = $("#game"), width = window.innerWidth, height = window.innerHeight) ->
-    @canvas  = $("<canvas width='#{width}' height='#{height}'></canvas>").appendTo(container)[0]
+    @canvas  = $("<canvas width='#{width}' height='#{height}' style='position:absolute'></canvas>").appendTo(container)[0]
+    @canvasDebug  = $("<canvas width='#{width}' height='#{height}' style='position:absolute'></canvas>").appendTo(container)[0]
     @context = @canvas.getContext("2d")
+    @contextDebug = @canvasDebug.getContext("2d")
 
     # Preparing main player
-    mouse    = new Mouse @canvas
+    mouse    = new Mouse document
     keyboard = new Keyboard
     @player = new Bee new Vector(50, 50), keyboard, mouse
     @enemy = new Enemy new Vector((@canvas.width + 100), (@canvas.height / 2))
