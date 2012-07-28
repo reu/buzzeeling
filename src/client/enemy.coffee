@@ -22,6 +22,7 @@ class Enemy extends Flier
     @velocity.add @acceleration
     @velocity.mult 0.93
     @velocity.limit @speed
+    @lastPosition = @position.clone()
     @position.add @velocity
     @acceleration = new Vector
 
