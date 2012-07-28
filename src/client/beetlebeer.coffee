@@ -4,4 +4,6 @@ class Beetlebeer extends Enemy
     @speed = 5
     @hp = 5
     super @position, @speed, @hp
-    @animation = new Animation ("beetlebeer", 4, 50)
+    @animation = new Animation("beetlebeer", 8, 50)
+
+window.Beetlebeer = Beetlebeer
