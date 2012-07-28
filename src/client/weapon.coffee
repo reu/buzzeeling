@@ -10,7 +10,7 @@ class Weapon
 
 class Pistol extends Weapon
   shot: ->
-    bullet = new Bullet @player.position.clone(), @player.angle
+    bullet = new Bullet @player.position.clone(), @player.angle, 30
     @player.addBullet bullet
 
 class DoublePistol extends Weapon
