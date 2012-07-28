@@ -36,7 +36,7 @@ class Game
       if position.x > @canvas.width or position.x < 0 or position.y > @canvas.height or position.y < 0
         delete @player.bullets.splice(index, 1)
       else
-        for enemy, enemyIndex in @waveManager.enemies when enemy?
+        for enemy, enemyIndex in @waveManager.enemies() when enemy?
           delta = Vector.sub position, enemy.position
           distance = delta.magSq()
 
@@ -44,7 +44,7 @@ class Game
 
           if distance <= radii * radii
             enemy.hit(bullet, @player)
-            delete @waveManager.enemies.remove(enemy)
+            delete @waveManager.enemies().remove(enemy)
             delete @player.bullets.remove(bullet)
 
   draw: ->
