@@ -61,7 +61,7 @@ class MiniBee extends Module
   constructor: (@position) ->
     @acceleration = new Vector 0, 0
     @velocity     = new Vector 0, 0
-
+    @animation = new Animation("minibee", 8, 30)
     @radius   = 5
     @maxspeed = 15
     @maxforce = 0.9
@@ -80,21 +80,18 @@ class MiniBee extends Module
 
   draw: (context) ->
     do context.save
-    context.fillStyle = "#FFE92B"
-    context.strokeStyle = "#000"
-    context.ellipse @position.x, @position.y, 10, 6
-    do context.stroke
-    do context.fill
+    context.translate(@position.x, @position.y)
+    @animation.draw(context)
     do context.restore
 
 class BeeBullet extends Bullet
-  draw: (context) ->
+  constructor: ->
+    super
+    @animation = new Animation("minibee_attacking", 1, 30)
+  draw: (context) =>
     do context.save
-    context.fillStyle = "#FFE92B"
-    context.strokeStyle = "#000"
-    context.ellipse @position.x, @position.y, 10, 6
-    do context.stroke
-    do context.fill
+    context.translate(@position.x, @position.y)
+    @animation.draw(context)
     do context.restore
 
 window.BeeLauncher = BeeLauncher

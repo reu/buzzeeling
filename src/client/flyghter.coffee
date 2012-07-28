@@ -4,6 +4,6 @@ class Flyghter extends Enemy
     @speed = 15
     @hp = 3
     super @position, @speed, @hp
-    @animation = new Animation("flyghter", 4, 50)
+    @animation = new Animation("flyghter", 8, 50)
 
 window.Flyghter = Flyghter

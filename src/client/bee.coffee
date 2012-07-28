@@ -15,7 +15,7 @@ class Bee extends Flier
     @angle = 0
     @bullets = []
     @weapon = new BeeLauncher(this)
-    @animation = new Animation("giuffrida", 4)
+    @animation = new Animation("giuffrida", 8)
 
   draw: (context) ->
     context.save()
