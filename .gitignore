@@ -1,0 +1,6 @@
+build/views
+build/server.js
+build/public/javascripts/*.js
+!build/public/javascripts/jquery.min.js
+!build/public/javascripts/excanvas.compiled.js
+node_modules/
