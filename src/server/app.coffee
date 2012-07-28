@@ -20,4 +20,4 @@ app.listen process.env.PORT || 3000, ->
   console.log "Server listening on port %d in %s mode", app.address().port, app.settings.env
 
 app.get "/", (req, res) ->
-  res.render "index", title: "TopDown"
+  res.render "index", title: "Buzzeeling"

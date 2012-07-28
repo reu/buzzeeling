@@ -6,11 +6,12 @@ class WaveManager
   ]
 
   constructor: (@bounds) ->
-    @start = new Date
     @wave = 0
     @availableEnemies = []
     @deployedEnemies = []
-    @deployEvery = 30 #seconds
+    @noobDeployEveryFrame = 120 #frames
+    @deployEvery = @noobDeployEveryFrame
+    @frame = 0
 
     do @buildEnemies
     (3).times =>
@@ -28,8 +29,17 @@ class WaveManager
     @availableEnemies.push new enemy(@deployPosition())
 
   buildEnemies: ->
-    for wave in WAVES[@wave]
-      for i in [0..wave.amount]
+    magicNumber = 1
+    waves = WAVES[@wave]
+
+    # creating infinite waves
+    unless waves
+      magicNumber = @wave
+      waves = WAVES.sample()
+
+    for wave in waves
+      total = wave.amount * magicNumber
+      for i in [0...total]
         @buildEnemy wave.enemy
 
   draw: (context) ->
@@ -37,18 +47,17 @@ class WaveManager
       enemy.draw context
 
   update: (game) ->
+    @frame += 1
     for enemy in @deployedEnemies when enemy?
       enemy.update game
 
-    now = new Date
-    shouldDeploy = Math.round(((now - @start) / 1000) / 60) % @deployEvery == 0
+    shouldDeploy = @frame % @deployEvery == 0
 
-    if shouldDeploy
+    if shouldDeploy or (@availableEnemies.length == 0 and @deployedEnemies.length == 0)
       if @availableEnemies.length > 0
-        numberOfEnemies = [1..[@availableEnemies.length, 2].min()].sample()
-        (numberOfEnemies).times @deployEnemy
-      else
-        #do @nextWave
+        (@numberOfEnemiesToDeploy()).times @deployEnemy
+      else if @deployedEnemies.length == 0
+        do @nextWave
 
   deployEnemy: =>
     enemy = @availableEnemies.pop()
@@ -57,8 +66,19 @@ class WaveManager
   enemies: ->
     @deployedEnemies
 
+  numberOfEnemiesToDeploy: ->
+    amount = [1..@minChanceOfSimultaneousEmenies()]
+    amount.push amount.last()
+    amount.sample()
+
+  minChanceOfSimultaneousEmenies: ->
+    min = Math.round (@wave + 1) * 1.5
+    [@availableEnemies.length, min].min()
+
+
   nextWave: ->
     @wave +=1
+    @deployEvery = @noobDeployEveryFrame / (@wave * 0.5)
     do @buildEnemies
 
 
