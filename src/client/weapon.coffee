@@ -50,9 +50,12 @@ class Bullet
     @velocity = Vector.fromAngle(angle)
     @velocity.mult speed
     @radius = 3
+    @lastPosition = @position
 
   update: ->
+    @lastPosition = @position.clone()
     @position.add @velocity
+
 
   draw: (context) ->
     context.beginPath()
