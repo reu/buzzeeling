@@ -1,5 +1,5 @@
 class Animation
-  constructor: (@prefix, @count) ->
+  constructor: (@prefix, @count, @scale = 70) ->
     @currentFrame = 1
 
     @frames = for index in [1..@count]
@@ -8,7 +8,7 @@ class Animation
       image
 
   draw: (context) ->
-    context.drawImage @frames[@currentFrame - 1], 0, 0, 70, 70
+    context.drawImage @frames[@currentFrame - 1], 0, 0, @scale, @scale
 
     if @currentFrame >= @count
       @currentFrame = 1
