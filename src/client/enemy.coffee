@@ -1,5 +1,5 @@
 class Enemy extends Flier
-  constructor: (@position, @speed = 5, @hp = 1) ->
+  constructor: (@position, @speed = 5, @hp = 1, @score = 1) ->
     super @position, @speed
     @maxspeed = 1
     @maxforce = 10
@@ -27,7 +27,7 @@ class Enemy extends Flier
 
   hit: (bullet, player) ->
     @hp -= bullet.damage
-    player.score.addPoint 1
+    player.score.addPoint @score if @dead()
 
   # Seekable
   applySeek: (target) ->
