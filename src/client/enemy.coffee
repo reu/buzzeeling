@@ -17,6 +17,12 @@ class Enemy extends Flier
     context.restore()
 
   update: (game) ->
-    @applyDirection new Vector -4, 0 unless @position.x  == (game.canvas.width / 2)
+    @applyDirection new Vector -1, 0 unless @position.x <= (game.canvas.width / 2)
+
+    @velocity.add @acceleration
+    @velocity.mult 0.93
+    @velocity.limit @speed
+    @position.add @velocity
+    @acceleration = new Vector
 
 window.Enemy = Enemy
