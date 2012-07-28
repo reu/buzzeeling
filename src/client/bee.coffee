@@ -16,10 +16,14 @@ class Bee extends Flier
     @bullets = []
     @weapon = new BeeLauncher(this)
     @animation = new Animation("giuffrida", 8)
+    @radius = 28
 
   draw: (context) ->
     context.save()
     context.translate(@position.x, @position.y)
+    if @position.x < @mouse.position.x
+      context.translate(@radius * 2, 0)
+      context.scale -1, 1
     @animation.draw(context)
     context.restore()
 
