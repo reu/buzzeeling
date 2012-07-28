@@ -21,7 +21,8 @@ class Enemy extends Flier
     @position.add @velocity
     @acceleration = new Vector
 
-  hit: (bullet, player)->
+  hit: (bullet, player) ->
+    @hp -= bullet.damage
     player.score.addPoint 1
 
   # Seekable
@@ -39,5 +40,7 @@ class Enemy extends Flier
     steering.limit(@maxforce)
 
     steering
+
+  dead: -> @hp <= 0
 
 window.Enemy = Enemy

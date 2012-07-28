@@ -45,8 +45,8 @@ class Game
 
           if distance <= radii * radii
             enemy.hit(bullet, @player)
-            delete @waveManager.enemies().remove(enemy)
             delete @player.bullets.remove(bullet)
+            delete @waveManager.enemies().remove(enemy) if enemy.dead()
 
   draw: ->
     do @clearScreen

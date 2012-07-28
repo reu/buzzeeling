@@ -88,6 +88,7 @@ class Bullet
     @radius = 3
     @lastPosition = @position
     @radius = 4
+    @damage = 1
 
   update: ->
     @lastPosition = @position.clone()
