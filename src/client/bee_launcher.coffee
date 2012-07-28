@@ -2,36 +2,22 @@ class BeeLauncher extends Weapon
   constructor: (@player) ->
     super @player
     @army = []
-    @size = 10
-    for index in [1..@size]
+    for index in [1..25]
       @army.push @generateBee()
-    @isReloading = false
-    @reloadTime = 40
-    @timer = 0
-    @startTime = 0
 
   shot: ->
-    unless @isReloading
-      miniBee = do @consumeBee
-      # TODO: nao é o player.angle, teriamos que calcular o angulo aqui
-      bullet = new BeeBullet miniBee.position.clone(), @player.angle, 20
-      @player.addBullet bullet
+    miniBee = do @consumeBee
+    # TODO: nao é o player.angle, teriamos que calcular o angulo aqui
+    bullet = new BeeBullet miniBee.position.clone(), @player.angle, 20
+    @player.addBullet bullet
 
   generateBee: ->
     position = new Vector 1024 / 2, 768 / 2
     new MiniBee(position)
 
-  reload: ->
-    @isReloading = true
-
-    if (@startTime + @reloadTime) <= @timer
-      for index in [1..@size]
-        @army.push @generateBee()
-      @isReloading = false
-      @timer = 0
-
   consumeBee: ->
     bee = @army.shift()
+    @army.push @generateBee()
     bee
 
   update: ->
@@ -41,14 +27,6 @@ class BeeLauncher extends Weapon
       bee.applySeparation @army
       bee.applySeek @player.position
       do bee.update
-
-    if @army.length == 0
-      @timer += 1
-      @reload()
-
-    @startTime = @timer unless @isReloading
-    @reload() if @isReloading
-
 
   draw: (context) ->
     for bee in @army

@@ -52,9 +52,8 @@ class Bee extends Flier
     @position.add @velocity
     @acceleration = new Vector
 
-
     do @weapon.update
-    do @weapon.shot if @mouse.isPressed and @weapon.canFire and !@weapon.isRealoding
+    do @weapon.shot if @mouse.isPressed and @weapon.canFire
 
     do bullet.update for bullet in @bullets
     do @score.update
