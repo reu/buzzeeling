@@ -1,8 +1,7 @@
 class Enemy extends Flier
 
-  constructor: (@position, @speed = 5) ->
+  constructor: (@position, @speed = 5, @hp = 1) ->
     super @position, @speed
-    @animation = new Animation "mosca", 4, 50
 
   draw: (context) ->
     context.save()

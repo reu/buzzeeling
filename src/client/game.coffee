@@ -16,7 +16,7 @@ class Game
 
     @enemies = []
     for i in [1..5]
-      @enemies.push new Enemy new Vector((@canvas.width + 100), (@canvas.height / 2) + i * 30)
+      @enemies.push new Flyghter new Vector((@canvas.width + 100), (@canvas.height / 2) + i * 30)
     @score = new Score "Player"
 
     # Attaching events
@@ -54,7 +54,7 @@ class Game
 
     if @enemies.length == 0
       for i in [1..5]
-        @enemies.push new Enemy new Vector((@canvas.width + 100), (@canvas.height / 2) + i * 30)
+        @enemies.push new Flyghter new Vector((@canvas.width + 100), (@canvas.height / 2) + i * 30)
 
   draw: ->
     do @clearScreen
