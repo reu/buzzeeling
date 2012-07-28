@@ -1,17 +1,19 @@
 class Score
-  constructor: (name) ->
-    @pName = name
-    @points = 0
+  constructor: (@pName) ->
+    @points = [0]
 
   draw: (context) ->
     context.font = "bold 20px arial"
     context.fillStyle = "#fff"
-    context.fillText("#{@pName} SCORE:", 15, 30)
+    context.fillText("#{@pName} SCORE: #{@points.last()}", 15, 30)
 
   update: (context) ->
-    @points += 1
-    context.font = "bold 20px arial"
-    context.fillStyle = "#fff"
-    context.fillText("#{@pName} SCORE: #{@points}", 15, 30)
+    totalPoints = @points.reduce (total, points)->
+      total += points
+    , 0
+    @points = [totalPoints]
+
+  addPoint: (points) ->
+    @points.push points
 
 window.Score = Score

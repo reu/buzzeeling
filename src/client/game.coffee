@@ -12,12 +12,11 @@ class Game
     # Preparing main player
     mouse    = new Mouse document
     keyboard = new Keyboard
-    @player = new Bee new Vector(50, 50), keyboard, mouse
+    @player = new Bee new Vector(50, 50), keyboard, mouse, new Score("Giuffrida")
 
     @enemies = []
     for i in [1..5]
       @enemies.push new Flyghter new Vector((@canvas.width + 100), (@canvas.height / 2) + i * 30)
-    @score = new Score "Player"
 
     # Attaching events
     $(window).on "resize", @resize
@@ -34,8 +33,6 @@ class Game
     for enemy in @enemies when enemy?
       enemy.update this
 
-    @score.update @context
-
     for bullet, index in @player.bullets when bullet?
       position = bullet.position
 
@@ -49,6 +46,7 @@ class Game
           radii = bullet.radius + enemy.radius
 
           if distance <= radii * radii
+            enemy.hit(bullet, @player)
             delete @enemies.remove(enemy)
             delete @player.bullets.remove(bullet)
 
@@ -62,8 +60,6 @@ class Game
 
     for enemy in @enemies when enemy?
       enemy.draw @context
-
-    @score.draw @context
 
   clearScreen: ->
     @context.clearRect 0, 0, @canvas.width, @canvas.height

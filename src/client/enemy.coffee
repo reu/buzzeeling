@@ -1,5 +1,4 @@
 class Enemy extends Flier
-
   constructor: (@position, @speed = 5, @hp = 1) ->
     super @position, @speed
 
@@ -8,7 +7,6 @@ class Enemy extends Flier
     context.translate(@position.x, @position.y)
     @animation.draw(context)
     context.restore()
-
 
   update: (game) ->
     @applyDirection new Vector -1, 0 unless @position.x <= (game.canvas.width / 2)
@@ -19,5 +17,8 @@ class Enemy extends Flier
     @lastPosition = @position.clone()
     @position.add @velocity
     @acceleration = new Vector
+
+  hit: (bullet, player)->
+    player.score.addPoint 1
 
 window.Enemy = Enemy

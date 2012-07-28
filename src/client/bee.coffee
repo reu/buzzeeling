@@ -10,7 +10,7 @@ class Bee extends Flier
     USE_DPISTOLS: Keyboard.KEYS.NUMBER2
     USE_SHOTGUN:  Keyboard.KEYS.NUMBER3
 
-  constructor: (@position, @keyboard, @mouse) ->
+  constructor: (@position, @keyboard, @mouse, @score) ->
     super @position, @speed = 20
     @angle = 0
     @bullets = []
@@ -25,6 +25,7 @@ class Bee extends Flier
 
     @weapon.draw context
     bullet.draw context for bullet in @bullets
+    @score.draw context
 
   update: (game) ->
     @angle = Math.atan2(@mouse.position.y - @position.y, @mouse.position.x - @position.x)
@@ -55,6 +56,7 @@ class Bee extends Flier
     do @weapon.shot if @mouse.isPressed and @weapon.canFire
 
     do bullet.update for bullet in @bullets
+    do @score.update
 
   addBullet: (bullet) ->
     @bullets.push bullet
