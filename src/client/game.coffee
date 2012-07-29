@@ -18,6 +18,10 @@ class Game
     @hits = []
     @splashes = []
     @honeys = []
+    @beezerk = null
+
+    @superTimer = 0
+    @superPower = false
 
     # Attaching events
     $(window).on "resize", @resize
@@ -45,6 +49,12 @@ class Game
   update: ->
     return if do @checkGameOver
 
+    @superTimer -= 1
+
+    if @superTimer < 0 and @superPower == true
+      @superPower = false
+      @player.weapon = new BeeLauncher(@player)
+
     @player.update this
     @player.checkLimits @canvas
     @waveManager.update this
@@ -65,6 +75,7 @@ class Game
         for enemy, enemyIndex in @waveManager.enemies() when enemy?
           if @collisionBetween bullet, enemy
             @addHit bullet.position
+            do @randomBonus if @superPower == false
             enemy.hit(bullet, @player)
             do bullet.die
             if enemy.dead()
@@ -89,6 +100,16 @@ class Game
 
     for hit in @hits when hit and hit.isDead()
       delete @hits.remove(hit)
+
+  randomBonus: ->
+    probability = 10
+    random = Number.random(100)
+
+    if random < probability
+      @superPower = true
+      @superTimer = 400
+      @beezerk = new Beezerk new Vector(@canvas.width / 2, @canvas.height / 2)
+      @player.weapon = new SuperBeeLauncher(@player)
 
   addHit: (position) ->
     hit = new Hit(position)
@@ -117,11 +138,15 @@ class Game
     @player.draw @context
     @waveManager.draw @context
 
-
     honey.draw @context for honey in @honeys when honey?
     splash.draw @context for splash in @splashes when splash?
     hit.draw @context for hit in @hits when hit?
 
+    if @beezerk
+      if @beezerk.hasEnded()
+        @beezerk = null
+      else
+        @beezerk.draw(@context)
 
   clearScreen: ->
     @context.clearRect 0, 0, @canvas.width, @canvas.height
