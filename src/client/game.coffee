@@ -18,6 +18,8 @@ class Game
 
     @waveManager = new WaveManager @canvas, @hive.position
 
+    @hits = []
+
     # Attaching events
     $(window).on "resize", @resize
 
@@ -43,10 +45,12 @@ class Game
       if position.x > @canvas.width or position.x < 0 or position.y > @canvas.height or position.y < 0
         delete @player.bullets.splice(index, 1)
       else if bullet.active and @collisionBetween @hive, bullet
+        @addHit bullet.position
         do bullet.die
       else if bullet.active
         for enemy, enemyIndex in @waveManager.enemies() when enemy?
           if @collisionBetween bullet, enemy
+            @addHit bullet.position
             enemy.hit(bullet, @player)
             do bullet.die
             delete @waveManager.enemies().remove(enemy) if enemy.dead()
@@ -58,6 +62,13 @@ class Game
         force.y *= -1
         force.mult 3
         enemy.applyForce force
+
+    for hit in @hits when hit and hit.isDead()
+      delete @hits.remove(hit)
+
+  addHit: (position) ->
+    hit = new Hit(position)
+    @hits.push hit
 
   collisionBetween: (p1, p2) ->
     delta = Vector.sub p1.position, p2.position
@@ -72,6 +83,8 @@ class Game
 
     @player.draw @context
     @waveManager.draw @context
+
+    hit.draw @context for hit in @hits when hit?
 
     @context.save()
     @context.beginPath()
