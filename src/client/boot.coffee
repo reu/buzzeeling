@@ -1,4 +1,6 @@
 jQuery ->
+  do AudioManager.menu.play
+
   $("img").on "mousedown", (e) -> e.preventDefault()
   $("#game").hide()
 
@@ -8,6 +10,7 @@ jQuery ->
 
   $("#play").click ->
     $("#menu").hide()
+    do AudioManager.menu.stop
     $("#game").fadeIn 1000, -> do new Game().start
 
 

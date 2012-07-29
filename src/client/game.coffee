@@ -33,6 +33,10 @@ class Game
 
   checkGameOver: ->
     if @hive.isDestroyed()
+      do AudioManager.gamePlay.stop
+      do AudioManager.bee.stop
+      do AudioManager.gameOver.play
+
       cancelRequestAnimationFrame window.animationFrameID
       $('#game').hide()
       $('canvas').remove()

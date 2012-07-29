@@ -14,5 +14,7 @@ class GameAudio
 
     ([@gamePlay, @bee]).each (sound) -> sound.loop = true
 
+    @bee.volume = 0.3
+
 window.GameAudio = GameAudio
 window.AudioManager = new GameAudio
