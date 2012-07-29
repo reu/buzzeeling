@@ -5,9 +5,6 @@ class Game
     @context = @canvas.getContext("2d")
     @contextDebug = @canvasDebug.getContext("2d")
     @contextDebug.fillStyle = '#FFF'
-    @snd = new Audio "sounds/abelha-bg.ogg"
-    @snd.loop = true
-    #@snd.play()
 
     # Preparing main player
     mouse    = new Mouse container
@@ -23,7 +20,9 @@ class Game
     # Attaching events
     $(window).on "resize", @resize
 
-  start: -> do @loop
+  start: ->
+    do AudioManager.gamePlay.play
+    do @loop
 
   loop: =>
     requestAnimationFrame @loop

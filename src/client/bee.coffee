@@ -21,6 +21,8 @@ class Bee extends Flier
     @radius = 28
     @force = 0.05
 
+    do AudioManager.bee.play
+
   checkLimits: (area) ->
     if @position.x + @radius > area.width or @position.x < 0
       @velocity.x *= -1
