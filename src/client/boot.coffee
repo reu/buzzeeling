@@ -5,6 +5,7 @@ jQuery ->
   $("#game").hide()
 
   $("#restart").click ->
+    do AudioManager.gameStart.play
     $('#gameover').hide()
     $("#game").fadeIn 1000, -> do new Game().start
 
