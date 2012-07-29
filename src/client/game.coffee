@@ -152,7 +152,7 @@ class Game
     @context.clearRect 0, 0, @canvas.width, @canvas.height
 
   resize: =>
-    @canvas.width  = window.innerWidth
-    @canvas.height = window.innerHeight
+    #@canvas.width  = window.innerWidth
+    #@canvas.height = window.innerHeight
 
 window.Game = Game
