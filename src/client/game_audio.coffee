@@ -1,8 +1,8 @@
 class GameAudio
   constructor: ->
-    @gamePlay   = new Audio "sounds/gameplay.mp3"
+    @gamePlay   = new Audio "sounds/gameplay.ogg"
     @gameOver   = new Audio "sounds/gameover.mp3"
-    @menu       = new Audio "sounds/menu.mp3"
+    @menu       = new Audio "sounds/menu.ogg"
     @gameStart  = new Audio "sounds/inbass.mp3"
     @splash     = new Audio "sounds/splash.mp3"
     @bee        = new Audio "sounds/bee.mp3"
