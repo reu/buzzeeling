@@ -19,7 +19,7 @@ class BeeLauncher extends Weapon
     @player.addBullet bullet
 
   reloadStarted: ->
-    do AudioManager.reload.play() if Number.random(100) < 40
+    do AudioManager.reload.play if Number.random(100) < 40
 
     beesToBeAdded = @clipSize - @ammo
     beesToBeAdded.times =>
