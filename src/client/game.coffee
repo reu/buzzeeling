@@ -16,6 +16,7 @@ class Game
     @waveManager = new WaveManager @canvas, @hive.position
 
     @hits = []
+    @splashes = []
 
     # Attaching events
     $(window).on "resize", @resize
@@ -52,7 +53,9 @@ class Game
             @addHit bullet.position
             enemy.hit(bullet, @player)
             do bullet.die
-            delete @waveManager.enemies().remove(enemy) if enemy.dead()
+            if enemy.dead()
+              @addSplash enemy.position
+              delete @waveManager.enemies().remove(enemy)
 
     for enemy in @waveManager.enemies() when enemy?
       if @collisionBetween @hive, enemy
@@ -62,12 +65,19 @@ class Game
         force.mult 3
         enemy.applyForce force
 
+    for splash in @splashes when splash and splash.hasEnded()
+      delete @splashes.remove(splash)
+
     for hit in @hits when hit and hit.isDead()
       delete @hits.remove(hit)
 
   addHit: (position) ->
     hit = new Hit(position)
     @hits.push hit
+
+  addSplash: (position) ->
+    splash = new Splash(position)
+    @splashes.push splash
 
   collisionBetween: (p1, p2) ->
     delta = Vector.sub p1.position, p2.position
@@ -83,6 +93,7 @@ class Game
     @player.draw @context
     @waveManager.draw @context
 
+    splash.draw @context for splash in @splashes when splash?
     hit.draw @context for hit in @hits when hit?
 
     @context.save()
