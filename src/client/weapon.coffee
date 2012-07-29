@@ -8,10 +8,13 @@ class Weapon
     @isReloading = false
     @clipSize = 5
     @ammo = @clipSize
-    @shotAudio = "sounds/bee_shot.ogg"
+    @defaultShotSound = "sounds/bee_shot.ogg"
+
+  shotSound: ->
+    @defaultShotSound
 
   playShot: ->
-    shot = new Audio(@shotAudio)
+    shot = new Audio(@shotSound())
     shot.preload = 'auto'
     shot.volume = 0.4
     do shot.play

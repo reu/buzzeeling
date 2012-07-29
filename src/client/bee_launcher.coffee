@@ -1,12 +1,15 @@
 class BeeLauncher extends Weapon
   constructor: (@player) ->
     super @player
-    @shotAudio = "sounds/bee_shot.ogg"
+    @defaultShotSound = "sounds/bee_shot.ogg"
     @clipSize = 10
     @army = []
     for index in [1..@clipSize]
       @army.push @generateBee()
     @ammo = @army.length
+
+  shotSound: ->
+    if Number.random(100) < 5 then "sounds/wee.ogg" else @defaultShotSound
 
   performShot: ->
     super
