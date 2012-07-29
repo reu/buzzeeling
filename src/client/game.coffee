@@ -59,6 +59,7 @@ class Game
 
     for enemy in @waveManager.enemies() when enemy?
       if @collisionBetween @hive, enemy
+        @hive.hit enemy
         force = enemy.velocity.clone()
         force.x *= -1
         force.y *= -1
