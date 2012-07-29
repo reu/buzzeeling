@@ -86,12 +86,28 @@ class BeeBullet extends Bullet
     @animation = new Animation("minibee_attacking", 1)
     @offset = { x: 10, y: 17 }
     @radius = 12
+    @acceleration = new Vector
+    @gravity = new Vector 0, 0.3
+    @active = true
 
   draw: (context) =>
     do context.save
     context.translate(@position.x - @offset.x, @position.y - @offset.y)
     @animation.draw(context)
     do context.restore
+
+  update: ->
+    @velocity.add @gravity unless @active
+    super
+
+  die: ->
+    bounce = @velocity.clone()
+    bounce.x *= -1 * 0.2
+    bounce.y = -5
+
+    @velocity = bounce
+
+    @active = false
 
 window.BeeLauncher = BeeLauncher
 window.SuperBeeLauncher = SuperBeeLauncher
