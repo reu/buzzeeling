@@ -21,7 +21,7 @@ class BeeLauncher extends Weapon
 
   generateBee: ->
     position = new Vector 1024 / 2 + Number.random(5), 250 + Number.random(10)
-    new MiniBee(position)
+    new MiniBee(position, @player.mouse)
 
   consumeBee: ->
     bee = @army.shift()
@@ -54,11 +54,12 @@ class MiniBee extends Module
   @include Separable
   @include Seekable
 
-  constructor: (@position) ->
+  constructor: (@position, @mouse) ->
     @acceleration = new Vector 0, 0
     @velocity     = new Vector 0, 0
     @animation = new Animation("minibee", 8)
     @radius   = 5
+    @offset = { x: 10, y: 10 }
     @maxspeed = 15
     @maxforce = 0.9
     @approximation = 5
@@ -77,8 +78,13 @@ class MiniBee extends Module
   draw: (context) ->
     do context.save
     context.translate(@position.x, @position.y)
+    if @position.x < @mouse.position.x
+      context.translate(@offset.x * 4, 0)
+      context.scale -1, 1
     @animation.draw(context)
+
     do context.restore
+
 
 class BeeBullet extends Bullet
   constructor: ->
@@ -93,8 +99,11 @@ class BeeBullet extends Bullet
   draw: (context) =>
     do context.save
     context.translate(@position.x - @offset.x, @position.y - @offset.y)
+    if(@velocity.x > 0)
+      context.scale -1, 1
     @animation.draw(context)
     do context.restore
+
 
   update: ->
     @velocity.add @gravity unless @active
