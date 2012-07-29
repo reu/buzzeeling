@@ -1,6 +1,7 @@
 class Mouse
   constructor: (container) ->
     @position = new Vector
+    @animation = new Animation("target",1)
 
     @isPressed = false
 
@@ -10,5 +11,11 @@ class Mouse
 
   updatePosition: (event) =>
     [@position.x, @position.y] = [event.offsetX, event.offsetY]
+
+   draw: (context) ->
+     context.save()
+     context.translate(@position.x, @position.y, 10)
+     @animation.draw(context)
+     context.restore()
 
 window.Mouse = Mouse

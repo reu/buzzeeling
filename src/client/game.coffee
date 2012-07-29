@@ -112,20 +112,15 @@ class Game
   draw: ->
     do @clearScreen
     @hive.draw @context
-
+    @player.mouse.draw @context
     @player.draw @context
     @waveManager.draw @context
+
 
     honey.draw @context for honey in @honeys when honey?
     splash.draw @context for splash in @splashes when splash?
     hit.draw @context for hit in @hits when hit?
 
-    @context.save()
-    @context.beginPath()
-    @context.fillStyle = "#000"
-    @context.fillCircle(@player.mouse.position.x, @player.mouse.position.y, 10)
-    @context.closePath()
-    @context.restore()
 
   clearScreen: ->
     @context.clearRect 0, 0, @canvas.width, @canvas.height
