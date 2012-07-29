@@ -6,10 +6,10 @@ class Enemy extends Flier
 
   draw: (context) ->
     context.save()
-    context.translate(@position.x, @position.y)
+    context.translate(@position.x - @offset.x, @position.y - @offset.y)
     offset = 50
     if @position.x < (1024 / 2) - offset
-      context.translate(@radius * 2, 0)
+      context.translate(@offset.x * 2, 0)
       context.scale -1, 1
     @animation.draw(context)
     context.restore()

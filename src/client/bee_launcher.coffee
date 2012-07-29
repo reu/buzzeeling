@@ -73,9 +73,12 @@ class BeeBullet extends Bullet
   constructor: ->
     super
     @animation = new Animation("minibee_attacking", 1)
+    @offset = { x: 10, y: 17 }
+    @radius = 12
+
   draw: (context) =>
     do context.save
-    context.translate(@position.x, @position.y)
+    context.translate(@position.x - @offset.x, @position.y - @offset.y)
     @animation.draw(context)
     do context.restore
 

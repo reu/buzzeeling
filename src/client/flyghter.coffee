@@ -6,5 +6,7 @@ class Flyghter extends Enemy
     @score = 100
     super @position, @speed, @hp, @score
     @animation = new Animation("flyghter", 8)
+    @offset = { x: 22, y: 25 }
+    @radius = 10
 
 window.Flyghter = Flyghter

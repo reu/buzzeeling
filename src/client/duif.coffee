@@ -6,5 +6,7 @@ class Duif extends Enemy
     @score = 500
     super @position, @speed, @hp, @score
     @animation = new Animation("duif", 8)
+    @offset = { x: 86, y: 97 }
+    @radius = 30
 
 window.Duif = Duif

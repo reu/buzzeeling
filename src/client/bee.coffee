@@ -17,6 +17,7 @@ class Bee extends Flier
     @bullets = []
     @weapon = new BeeLauncher(this)
     @animation = new Animation("giuffrida", 8)
+    @offset = { x: 32, y: 56 }
     @radius = 28
 
   checkLimits: (area) ->
@@ -30,9 +31,9 @@ class Bee extends Flier
 
   draw: (context) ->
     context.save()
-    context.translate(@position.x, @position.y)
+    context.translate(@position.x - @offset.x, @position.y - @offset.y)
     if @position.x < @mouse.position.x
-      context.translate(@radius * 2, 0)
+      context.translate(@offset.x * 2, 0)
       context.scale -1, 1
     @animation.draw(context)
     context.restore()
