@@ -33,6 +33,10 @@ class Game
     @player.checkLimits @canvas
     @waveManager.update this
 
+    if @collisionBetween @hive, @player
+      @player.velocity.x *= -1
+      @player.velocity.y *= -1
+
     for bullet, index in @player.bullets when bullet?
       position = bullet.position
 
@@ -40,26 +44,24 @@ class Game
         delete @player.bullets.splice(index, 1)
       else
         for enemy, enemyIndex in @waveManager.enemies() when enemy?
-          delta = Vector.sub position, enemy.position
-          distance = delta.magSq()
-
-          radii = bullet.radius + enemy.radius
-
-          if distance <= radii * radii
+          if @collisionBetween bullet, enemy
             enemy.hit(bullet, @player)
             delete @player.bullets.remove(bullet)
             delete @waveManager.enemies().remove(enemy) if enemy.dead()
 
     for enemy in @waveManager.enemies() when enemy?
-      delta = Vector.sub @hive.position, enemy.position
-      distance = delta.magSq()
-      radii = @hive.radius + enemy.radius
-
-      if distance <= radii * radii
+      if @collisionBetween @hive, enemy
         targetX = @hive.position.x + ([1, -1, 1].sample() * 50)
         targetY = @hive.position.y + ([1, -1, 1].sample() * 50)
 
         enemy.target = new Vector targetX, targetY
+
+  collisionBetween: (p1, p2) ->
+    delta = Vector.sub p1.position, p2.position
+    distance = delta.magSq()
+    radii = p1.radius + p2.radius
+
+    distance <= radii * radii
 
   draw: ->
     do @clearScreen
