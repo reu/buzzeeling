@@ -14,10 +14,12 @@ class Weapon
     @defaultShotSound
 
   playShot: ->
-    shot = new Audio(@shotSound())
-    shot.preload = 'auto'
-    shot.volume = 0.4
-    do shot.play
+    soundToPlay = @shotSound()
+    if soundToPlay?
+      shot = new Audio(@shotSound())
+      shot.preload = 'auto'
+      shot.volume = 0.4
+      do shot.play
 
   shot: ->
     if @canFire

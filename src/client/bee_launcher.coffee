@@ -52,6 +52,9 @@ class SuperBeeLauncher extends BeeLauncher
     @rateOfFire = 2
     @timeToReload = 0
 
+  shotSound: ->
+    if Number.random(100) < 5 then "sounds/wee.ogg" else null
+
   performShot: ->
     super
     do @reload
