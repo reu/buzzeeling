@@ -1,6 +1,7 @@
 class BeeLauncher extends Weapon
   constructor: (@player) ->
     super @player
+    @shotAudio = "sounds/bee_shot.ogg"
     @clipSize = 10
     @army = []
     for index in [1..@clipSize]

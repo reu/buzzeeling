@@ -15,6 +15,12 @@ class Honey
 
   hasEnded: -> @ended
 
+  playCollision: ->
+    collision = new Audio("sounds/hive_collision.ogg")
+    collision.preload = 'auto'
+    collision.volume = 0.4
+    do collision.play
+
   draw: (context) ->
     image = FRAMES[parseInt(@currentFrame - 1)]
 

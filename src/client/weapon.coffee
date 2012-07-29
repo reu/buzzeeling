@@ -8,9 +8,17 @@ class Weapon
     @isReloading = false
     @clipSize = 5
     @ammo = @clipSize
+    @shotAudio = "sounds/bee_shot.ogg"
+
+  playShot: ->
+    shot = new Audio(@shotAudio)
+    shot.preload = 'auto'
+    shot.volume = 0.4
+    do shot.play
 
   shot: ->
     if @canFire
+      do @playShot
       do @performShot
     else if @ammo == 0
       do @reload

@@ -5,9 +5,11 @@ class GameAudio
     @menu       = new Audio "sounds/menu.ogg"
     @gameStart  = new Audio "sounds/inbass.mp3"
     @splash     = new Audio "sounds/splash.mp3"
+    @collision  = new Audio "sounds/collision.ogg"
+    @beeShot    = new Audio "sounds/bee_shot.ogg"
     @bee        = new Audio "sounds/bee.mp3"
 
-    ([@gamePlay, @gameOver, @menu, @bee, @gameStart]).each (sound) ->
+    ([@gamePlay, @gameOver, @menu, @bee, @gameStart, @collision, @splash, @beeShot]).each (sound) ->
       sound.preload = 'auto'
       # There is no stop in the API
       sound.stop = ->

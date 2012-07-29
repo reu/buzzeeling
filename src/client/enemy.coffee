@@ -33,6 +33,13 @@ class Enemy extends Flier
   hit: (bullet, player) ->
     @hp -= bullet.damage
     player.score.addPoint @score if @dead()
+    do @playHit unless @dead()
+
+  playHit: ->
+    collision = new Audio("sounds/collision.ogg")
+    collision.preload = 'auto'
+    collision.volume = 0.4
+    do collision.play
 
   # Seekable
   applySeek: (target) ->

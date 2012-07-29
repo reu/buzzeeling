@@ -96,6 +96,7 @@ class Game
 
   addHoney: (position) ->
     honey = new Honey(position)
+    do honey.playCollision
     @honeys.push honey
 
   addSplash: (position) ->
