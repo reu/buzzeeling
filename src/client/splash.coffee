@@ -4,6 +4,7 @@ class Splash
   constructor: (@position) ->
     @position = @position.clone()
     @currentFrame = 1
+    @soundEffectPlayed = false
     @ended = false
     @count = 8
 
@@ -16,6 +17,10 @@ class Splash
   hasEnded: -> @ended
 
   draw: (context) ->
+    unless @soundEffectPlayed
+      @soundEffectPlayed = true
+      do AudioManager.splash.play
+
     image = FRAMES[@currentFrame - 1]
 
     if image
