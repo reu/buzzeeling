@@ -19,7 +19,7 @@ class Beezerk
   draw: (context) ->
     unless @soundEffectPlayed
       @soundEffectPlayed = true
-      do AudioManager.splash.play
+      do AudioManager.yay.play
 
     image = FRAMES[@currentFrame - 1] || FRAMES.last()
 
