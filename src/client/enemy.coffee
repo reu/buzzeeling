@@ -17,9 +17,9 @@ class Enemy extends Flier
   applyForce: (force) -> @acceleration.add force
 
   update: (game) ->
-    targetX = 1024 / 2  + ([1, -1, 1].sample() * 50)
-    targetY = 768 / 2  + ([1, -1, 1].sample() * 50)
-    @applySeek new Vector targetX, targetY
+    #targetX = 1024 / 2  + ([1, -1, 1].sample() * 50)
+    #targetY = 768 / 2  + ([1, -1, 1].sample() * 50)
+    @applySeek @target
     @lastPosition = @position.clone()
     @velocity.add @acceleration
     @position.add @velocity

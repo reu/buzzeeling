@@ -14,7 +14,9 @@ class Game
     keyboard = new Keyboard
     @player = new Bee new Vector(50, 50), keyboard, mouse, new Score("Giuffrida")
 
-    @waveManager = new WaveManager @canvas
+    @hive = new Hive new Vector(1024/2, 230)
+
+    @waveManager = new WaveManager @canvas, @hive.position
 
     # Attaching events
     $(window).on "resize", @resize
@@ -48,8 +50,21 @@ class Game
             delete @player.bullets.remove(bullet)
             delete @waveManager.enemies().remove(enemy) if enemy.dead()
 
+    for enemy in @waveManager.enemies() when enemy?
+      delta = Vector.sub @hive.position, enemy.position
+      distance = delta.magSq()
+      radii = @hive.radius + enemy.radius
+
+      if distance <= radii * radii
+        targetX = @hive.position.x + ([1, -1, 1].sample() * 50)
+        targetY = @hive.position.y + ([1, -1, 1].sample() * 50)
+
+        enemy.target = new Vector targetX, targetY
+
   draw: ->
     do @clearScreen
+    @hive.draw @context
+
     @player.draw @context
     @waveManager.draw @context
 

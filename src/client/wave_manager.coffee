@@ -8,7 +8,7 @@ class WaveManager
     [ { amount: 5, enemy: Duif }, { amount: 5, enemy: Wespa }, { amount: 3, enemy: Beetlebeer }, { amount: 10, enemy: Battrick }, { amount: 5, enemy: Flyghter } ]
   ]
 
-  constructor: (@bounds) ->
+  constructor: (@bounds, @target) ->
     @wave = 0
     @availableEnemies = []
     @deployedEnemies = []
@@ -32,8 +32,10 @@ class WaveManager
     position = positions.sample()
     return new Vector position.first(), position.last()
 
-  buildEnemy: (enemy) =>
-    @availableEnemies.push new enemy(@deployPosition())
+  buildEnemy: (enemyClass) =>
+    enemy = new enemyClass(@deployPosition())
+    enemy.target = @target
+    @availableEnemies.push enemy
 
   buildEnemies: ->
     magicNumber = 1
