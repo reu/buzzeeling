@@ -9,14 +9,14 @@ class Bee extends Flier
     RELOAD:       Keyboard.KEYS.R
 
   constructor: (@position, @keyboard, @mouse, @score) ->
-    super @position, @speed = 6
+    super @position, @speed = 10
     @angle = 0
     @bullets = []
     @weapon = new BeeLauncher(this)
     @animation = new Animation("giuffrida", 8)
     @offset = { x: 32, y: 56 }
     @radius = 28
-    @force = 0.05
+    @force = 0.2
 
     do AudioManager.bee.play
 
