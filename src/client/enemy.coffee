@@ -19,7 +19,12 @@ class Enemy extends Flier
   update: (game) ->
     #targetX = 1024 / 2  + ([1, -1, 1].sample() * 50)
     #targetY = 768 / 2  + ([1, -1, 1].sample() * 50)
+    randomForce = Vector.fromAngle(Number.random(360))
+    randomForce.mult 2
+    randomForce.limit @maxforce * 4
+
     @applySeek @target
+    @applyForce randomForce
     @lastPosition = @position.clone()
     @velocity.add @acceleration
     @position.add @velocity
