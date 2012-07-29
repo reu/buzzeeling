@@ -20,7 +20,7 @@ class BeeLauncher extends Weapon
       @army.push @generateBee()
 
   generateBee: ->
-    position = new Vector 1024 / 2 + Number.random(10), 768 / 2 + Number.random(10)
+    position = new Vector 1024 / 2 + Number.random(5), 250 + Number.random(10)
     new MiniBee(position)
 
   consumeBee: ->
@@ -38,6 +38,17 @@ class BeeLauncher extends Weapon
   draw: (context) ->
     for bee in @army
       bee.draw context
+
+class SuperBeeLauncher extends BeeLauncher
+  constructor: (@player) ->
+    super @player
+    @clipSize = 80
+    @rateOfFire = 2
+    @timeToReload = 0
+
+  performShot: ->
+    super
+    do @reload
 
 class MiniBee extends Module
   @include Separable
@@ -83,3 +94,4 @@ class BeeBullet extends Bullet
     do context.restore
 
 window.BeeLauncher = BeeLauncher
+window.SuperBeeLauncher = SuperBeeLauncher
