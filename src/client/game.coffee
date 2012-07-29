@@ -9,7 +9,7 @@ class Game
     # Preparing main player
     mouse    = new Mouse container
     keyboard = new Keyboard
-    @player = new Bee new Vector(50, 50), keyboard, mouse, new Score("Giuffrida")
+    @player = new Bee new Vector((width/2), (height/2)), keyboard, mouse, new Score("Giuffrida")
 
     @hive = new Hive new Vector(1024/2, 230)
 
