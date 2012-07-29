@@ -12,14 +12,14 @@ class Bee extends Flier
     USE_SHOTGUN:  Keyboard.KEYS.NUMBER3
 
   constructor: (@position, @keyboard, @mouse, @score) ->
-    super @position, @speed = 4
+    super @position, @speed = 6
     @angle = 0
     @bullets = []
     @weapon = new BeeLauncher(this)
     @animation = new Animation("giuffrida", 8)
     @offset = { x: 32, y: 56 }
     @radius = 28
-    @force = 0.1
+    @force = 0.05
 
   checkLimits: (area) ->
     if @position.x + @radius > area.width or @position.x < 0
