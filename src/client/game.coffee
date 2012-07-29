@@ -56,7 +56,7 @@ class Game
         force = enemy.velocity.clone()
         force.x *= -1
         force.y *= -1
-        force.mult 4
+        force.mult 3
         enemy.applyForce force
 
   collisionBetween: (p1, p2) ->
