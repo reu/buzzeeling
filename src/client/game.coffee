@@ -42,6 +42,8 @@ class Game
 
       if position.x > @canvas.width or position.x < 0 or position.y > @canvas.height or position.y < 0
         delete @player.bullets.splice(index, 1)
+      else if @collisionBetween @hive, bullet
+        delete @player.bullets.remove(bullet)
       else
         for enemy, enemyIndex in @waveManager.enemies() when enemy?
           if @collisionBetween bullet, enemy
