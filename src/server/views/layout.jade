@@ -36,6 +36,11 @@ html
     script(type="text/javascript", src="/javascripts/boot.js")
   body(style="background-color: #000")
     != body
+    #gameover
+      image(src="/images/game-over.jpg", style="position: absolute;", usemap='imgmap2012729155656')
+      map(id="imgmap2012729155656", name="imgmap2012729155656")
+        area#restart(shape="rect", coords="386,534,688,709", href="#")
+
     #game(style="background-image:url('/images/fundo.jpg'); height: 768px; width: 1024px; margin: 0 auto")
       image(src="/images/fundo_campjam_copa.png", style="position: absolute;")
       image(src="/images/galho.png", style="position: absolute;")

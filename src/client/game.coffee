@@ -26,11 +26,20 @@ class Game
     do @loop
 
   loop: =>
-    requestAnimationFrame @loop
+    window.animationFrameID = requestAnimationFrame @loop
     do @update
     do @draw
 
+  checkGameOver: ->
+    if @hive.isDestroyed()
+      cancelRequestAnimationFrame window.animationFrameID
+      $('#game').hide()
+      $('canvas').remove()
+      $('#gameover').fadeIn()
+
   update: ->
+    return if do @checkGameOver
+
     @player.update this
     @player.checkLimits @canvas
     @waveManager.update this
