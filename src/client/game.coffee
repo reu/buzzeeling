@@ -53,10 +53,11 @@ class Game
 
     for enemy in @waveManager.enemies() when enemy?
       if @collisionBetween @hive, enemy
-        targetX = @hive.position.x + ([1, -1, 1].sample() * 50)
-        targetY = @hive.position.y + ([1, -1, 1].sample() * 50)
-
-        enemy.target = new Vector targetX, targetY
+        force = enemy.velocity.clone()
+        force.x *= -1
+        force.y *= -1
+        force.mult 4
+        enemy.applyForce force
 
   collisionBetween: (p1, p2) ->
     delta = Vector.sub p1.position, p2.position

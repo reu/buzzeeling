@@ -2,7 +2,7 @@ class Enemy extends Flier
   constructor: (@position, @speed = 5, @hp = 1, @score = 1) ->
     super @position, @speed
     @maxspeed = 1
-    @maxforce = 10
+    @maxforce = 0.1
 
   draw: (context) ->
     context.save()
