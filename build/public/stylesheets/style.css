@@ -3,9 +3,13 @@ body {
   overflow: hidden;
 }
 
-#menu {
+.title {
+  margin: 0 auto;
   height: 720px;
   width: 1024px;
+}
+
+#menu {
   margin: 0 auto;
 }
 
