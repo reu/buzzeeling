@@ -2,3 +2,15 @@ body {
   margin: 0;
   overflow: hidden;
 }
+
+#menu {
+  height: 720px;
+  width: 1024px;
+  margin: 0 auto;
+}
+
+#play {
+  position: relative;
+  left: 300px
+
+}
