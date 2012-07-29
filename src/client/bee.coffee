@@ -7,9 +7,6 @@ class Bee extends Flier
     WALK_DOWN:    Keyboard.KEYS.S
     WALK_RIGHT:   Keyboard.KEYS.D
     RELOAD:       Keyboard.KEYS.R
-    USE_PISTOL:   Keyboard.KEYS.NUMBER1
-    USE_DPISTOLS: Keyboard.KEYS.NUMBER2
-    USE_SHOTGUN:  Keyboard.KEYS.NUMBER3
 
   constructor: (@position, @keyboard, @mouse, @score) ->
     super @position, @speed = 6
@@ -59,10 +56,6 @@ class Bee extends Flier
 
     if @position.y < game.canvas.height - 30 and @keyboard.isKeyPressed Bee.COMMANDS.WALK_DOWN
       @applyDirection new Vector 0,  1
-
-    @weapon = new Pistol(this)       if @keyboard.isKeyPressed Bee.COMMANDS.USE_PISTOL
-    @weapon = new DoublePistol(this) if @keyboard.isKeyPressed Bee.COMMANDS.USE_DPISTOLS
-    @weapon = new Shotgun(this)      if @keyboard.isKeyPressed Bee.COMMANDS.USE_SHOTGUN
 
     @velocity.add @acceleration
     @velocity.mult FRICTION
