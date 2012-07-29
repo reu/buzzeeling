@@ -17,6 +17,7 @@ class Game
 
     @hits = []
     @splashes = []
+    @honeys = []
 
     # Attaching events
     $(window).on "resize", @resize
@@ -69,11 +70,15 @@ class Game
     for enemy in @waveManager.enemies() when enemy?
       if @collisionBetween @hive, enemy
         @hive.hit enemy
+        @addHoney enemy.position
         force = enemy.velocity.clone()
         force.x *= -1
         force.y *= -1
         force.mult 3
         enemy.applyForce force
+
+    for honey in @honeys when honey and honey.hasEnded()
+      delete @honeys.remove(honey)
 
     for splash in @splashes when splash and splash.hasEnded()
       delete @splashes.remove(splash)
@@ -84,6 +89,10 @@ class Game
   addHit: (position) ->
     hit = new Hit(position)
     @hits.push hit
+
+  addHoney: (position) ->
+    honey = new Honey(position)
+    @honeys.push honey
 
   addSplash: (position) ->
     splash = new Splash(position)
@@ -103,6 +112,7 @@ class Game
     @player.draw @context
     @waveManager.draw @context
 
+    honey.draw @context for honey in @honeys when honey?
     splash.draw @context for splash in @splashes when splash?
     hit.draw @context for hit in @hits when hit?
 
