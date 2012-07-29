@@ -1,8 +1,11 @@
 class WaveManager
   WAVES = [
-    [ { amount: 10, enemy: Battrick } ]
-    [ { amount: 15, enemy: Duif }, { amount: 10, enemy: Wespa } ]
-    [ { amount: 5, enemy: Flyghter }, { amount: 10, enemy: Wespa }, { amount: 5, enemy: Beetlebeer } ]
+    [ { amount: 10, enemy: Flyghter } ]
+    [ { amount: 15, enemy: Flyghter }, { amount: 5, enemy: Wespa } ]
+    [ { amount: 5, enemy: Flyghter }, { amount: 10, enemy: Wespa }, { amount: 5, enemy: Beetlebeer }, { amount: 2, enemy: Battrick } ]
+    [ { amount: 3, enemy: Flyghter }, { amount: 5, enemy: Wespa }, { amount: 5, enemy: Beetlebeer }, { amount: 5, enemy: Battrick } ]
+    [ { amount: 1, enemy: Duif }, { amount: 5, enemy: Wespa }, { amount: 3, enemy: Beetlebeer }, { amount: 10, enemy: Battrick } ]
+    [ { amount: 5, enemy: Duif }, { amount: 5, enemy: Wespa }, { amount: 3, enemy: Beetlebeer }, { amount: 10, enemy: Battrick }, { amount: 5, enemy: Flyghter } ]
   ]
 
   constructor: (@bounds) ->
