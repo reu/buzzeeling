@@ -9,6 +9,7 @@ jQuery ->
     $("#game").fadeIn 1000, -> do new Game().start
 
   $("#play").click ->
+    do AudioManager.gameStart.play
     $("#menu").hide()
     do AudioManager.menu.stop
     $("#game").fadeIn 1000, -> do new Game().start
