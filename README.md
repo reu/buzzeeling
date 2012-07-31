@@ -13,12 +13,12 @@ A versão funcional do jogo pode ser encontrada na seguinte URL: http://buzzeeli
 # Equipe
 
 ### Desenvolvimento
-* Rodrigo Navarro (@reu)[http://github.com/reu]
-* Guilherme da Silva Mello (@guimello)[http://github.com/guimello]
-* Guilherme Ceolin (@guiceolin)[http://github.com/guiceolin]
-* Paulo Marcelo Silva (@puloms)[http://github.com/puloms]
+* Rodrigo Navarro [@reu](http://github.com/reu)
+* Guilherme da Silva Mello [@guimello](http://github.com/guimello)
+* Guilherme Ceolin [@guiceolin](http://github.com/guiceolin)
+* Paulo Marcelo Silva [@puloms](http://github.com/puloms)
 * Tuane Quintella
-* Daniel Teixeira (@danieltdt)[http://github.com/danieltdt]
+* Daniel Teixeira [@danieltdt](http://github.com/danieltdt)
 
 ### Arte
 * Juliana Akemi
