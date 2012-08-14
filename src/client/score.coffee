@@ -1,8 +1,7 @@
 class Score
   constructor: (@pName) ->
     @points = [0]
-    @image = new Image
-    @image.src = "images/score.png"
+    @image = Resources.images["score"]
 
   draw: (context) ->
 

@@ -1,15 +1,15 @@
 class GameAudio
   constructor: ->
-    @gamePlay   = new Audio "sounds/gameplay.ogg"
-    @gameOver   = new Audio "sounds/gameover.mp3"
+    @gamePlay   = Resources.sounds["gameplay"]
+    @gameOver   = Resources.sounds["gameover"]
     @menu       = new Audio "sounds/menu.ogg"
     @gameStart  = new Audio "sounds/inbass.mp3"
-    @splash     = new Audio "sounds/splash.mp3"
-    @collision  = new Audio "sounds/collision.ogg"
-    @beeShot    = new Audio "sounds/bee_shot.ogg"
-    @reload     = new Audio "sounds/reload.ogg"
-    @bee        = new Audio "sounds/bee.mp3"
-    @yay        = new Audio "sounds/yeah.ogg"
+    @splash     = Resources.sounds["splash"]
+    @collision  = Resources.sounds["collision"]
+    @beeShot    = Resources.sounds["bee_shot"]
+    @reload     = Resources.sounds["reload"]
+    @bee        = Resources.sounds["bee"]
+    @yay        = Resources.sounds["yeah"]
 
     ([@gamePlay, @gameOver, @menu, @bee, @gameStart, @collision, @splash, @beeShot, @reload, @yay]).each (sound) ->
       sound.preload = 'auto'

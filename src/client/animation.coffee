@@ -3,9 +3,7 @@ class Animation
     @currentFrame = 1
 
     @frames = for index in [1..@count]
-      image = new Image
-      image.src = "images/#{@prefix}#{index}.png"
-      image
+      Resources.images["#{@prefix}#{index}"]
 
   draw: (context) ->
     context.drawImage @frames[@currentFrame - 1], 0, 0

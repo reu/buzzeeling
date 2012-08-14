@@ -10,9 +10,7 @@ class Splash
 
     unless FRAMES
       FRAMES = for index in [1..@count]
-        image = new Image
-        image.src = "images/splash#{index}.png"
-        image
+        Resources.images["splash#{index}"]
 
   hasEnded: -> @ended
 

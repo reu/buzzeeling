@@ -9,9 +9,7 @@ class Honey
 
     unless FRAMES
       FRAMES = for index in [1..@count]
-        image = new Image
-        image.src = "images/mel#{index}.png"
-        image
+        Resources.images["mel#{index}"]
 
   hasEnded: -> @ended
 

@@ -11,6 +11,7 @@ files = [
   "keyboard"
   "animation"
   "mouse"
+  "resources"
   "game_audio"
   "hit"
   "beezerk"

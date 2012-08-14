@@ -1,15 +1,22 @@
 class Game
-  constructor: (container = $("#game"), width = 1024, height = 768) ->
-    @canvas  = $("<canvas width='#{width}' height='#{height}' style='position:absolute'></canvas>").appendTo(container)[0]
-    @canvasDebug  = $("<canvas width='#{width}' height='#{height}' style='position:absolute'></canvas>").appendTo(container)[0]
+  constructor: (@container = $("#game"), @width = 1024, @height = 768) ->
+    @canvas  = $("<canvas width='#{@width}' height='#{@height}' style='position:absolute'></canvas>").appendTo(@container)[0]
+    @canvasDebug  = $("<canvas width='#{@width}' height='#{@height}' style='position:absolute'></canvas>").appendTo(@container)[0]
     @context = @canvas.getContext("2d")
     @contextDebug = @canvasDebug.getContext("2d")
     @contextDebug.fillStyle = '#FFF'
 
+    # Attaching events
+    $(window).on "resize", @resize
+
+  load: ->
+    Resources.load @start
+
+  start: =>
     # Preparing main player
-    mouse    = new Mouse container
+    mouse    = new Mouse @container
     keyboard = new Keyboard
-    @player = new Bee new Vector((width/2), (height/2)), keyboard, mouse, new Score("Giuffrida")
+    @player = new Bee new Vector((@width/2), (@height/2)), keyboard, mouse, new Score("Giuffrida")
 
     @hive = new Hive new Vector(1024/2, 230)
 
@@ -23,10 +30,6 @@ class Game
     @superTimer = 0
     @superPower = false
 
-    # Attaching events
-    $(window).on "resize", @resize
-
-  start: ->
     do AudioManager.gamePlay.play
     do @loop
 

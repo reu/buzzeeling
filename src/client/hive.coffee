@@ -8,9 +8,7 @@ class Hive
 
     unless SPRITES
       SPRITES = for index in [0..10]
-        image = new Image
-        image.src = "images/colmeia#{index}.png"
-        image
+        Resources.images["colmeia#{index}"]
 
   hit: (enemy) ->
     @hp -= 1

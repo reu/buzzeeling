@@ -10,9 +10,7 @@ class Beezerk
 
     unless FRAMES
       FRAMES = for index in [1..@count]
-        image = new Image
-        image.src = "images/beezerk#{index}.png"
-        image
+        Resources.images["beezerk#{index}"]
 
   hasEnded: -> @ended
 

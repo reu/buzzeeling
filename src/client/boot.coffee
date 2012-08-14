@@ -16,7 +16,7 @@ jQuery ->
     $("#menu").fadeOut 700, ->
       do AudioManager.menu.stop
       do AudioManager.gameStart.play
-      $("#game").fadeIn 700, -> do new Game().start
+      $("#game").fadeIn 700, -> do new Game().load
 
   $('#instruction').click ->
     $("#menu").fadeOut 500, ->
