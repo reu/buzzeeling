@@ -100,28 +100,12 @@ class ResourceManager
     "wespa8.png"
   ]
 
-  SOUNDS = [
-    "bee.mp3"
-    "bee_shot.ogg"
-    "collision.ogg"
-    "gameover.mp3"
-    "gameplay.ogg"
-    "hive_collision.ogg"
-    "inbass.mp3"
-    "menu.ogg"
-    "reload.ogg"
-    "splash.mp3"
-    "wee.ogg"
-    "yeah.ogg"
-  ]
-
   constructor: ->
     @images = {}
-    @sounds = {}
 
   load: (callback) ->
     loaded = 0
-    resourcesCount = IMAGES.length + SOUNDS.length
+    resourcesCount = IMAGES.length
     resourceLoaded = ->
       loaded += 1
       console.log "#{loaded / resourcesCount * 100}%"
@@ -134,13 +118,5 @@ class ResourceManager
       image.src = src
       name = src.replace("images/", "").replace(/\.\w+$/, "")
       @images[name] = image
-
-    for sound in SOUNDS
-      src = "sounds/#{sound}"
-      sound = new Audio
-      sound.onload = resourceLoaded
-      sound.src = src
-      name = src.replace("sounds/", "").replace(/\.\w+$/, "")
-      @sounds[src.replace(/\.\w+$/, "")] = sound
 
 window.Resources = new ResourceManager
