@@ -68,7 +68,7 @@ class MiniBee extends Module
     @velocity     = new Vector 0, 0
     @animation = new Animation("minibee", 8)
     @radius   = 5
-    @offset = { x: 10, y: 10 }
+    @offset = { x: 50, y: 10 }
     @maxspeed = 15
     @maxforce = 0.9
     @approximation = 5
@@ -86,14 +86,12 @@ class MiniBee extends Module
 
   draw: (context) ->
     do context.save
-    context.translate(@position.x, @position.y)
+    context.translate(@position.x - 25, @position.y - 25)
     if @position.x < @mouse.position.x
-      context.translate(@offset.x * 4, 0)
+      context.translate(@offset.x, 0)
       context.scale -1, 1
     @animation.draw(context)
-
     do context.restore
-
 
 class BeeBullet extends Bullet
   constructor: ->
