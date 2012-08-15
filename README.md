@@ -17,7 +17,7 @@ A versão funcional do jogo pode ser encontrada na seguinte URL: http://buzzeeli
 * Guilherme da Silva Mello [@guimello](http://github.com/guimello)
 * Guilherme Ceolin [@guiceolin](http://github.com/guiceolin)
 * Paulo Marcelo Silva [@puloms](http://github.com/puloms)
-* Tuane Quintella
+* Tuane Quintella [@tuanequintella](https://github.com/tuanequintella)
 * Daniel Teixeira [@danieltdt](http://github.com/danieltdt)
 
 ### Arte
@@ -26,7 +26,7 @@ A versão funcional do jogo pode ser encontrada na seguinte URL: http://buzzeeli
 
 
 ### Enredo
-* Tuane Quintella
+* Tuane Quintella [@tuanequintella](https://github.com/tuanequintella)
 * Deborah Almeida
 
 ### Música
